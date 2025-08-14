@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>購物車</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+     <header>
+        <div class="header-content">
+            <div class="logo" onclick="showPage('home')">🛒 百貨雜貨行</div>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 首頁 - 商品列表 -->
+        <div id="homePage" class="page active">
+            <div class="products-grid" id="productsGrid">
+                <!-- 商品將在這裡動態生成 -->
+            </div>
+        </div>
+
+        <!-- 結帳頁面 -->
+        <div id="checkoutPage" class="page">
+            <div class="checkout-page">
+                <div class="checkout-header">
+                    <button class="back-btn" onclick="showPage('home')">← 返回購物</button>
+                    <h1 class="checkout-title">結帳</h1>
+                </div>
+
+                <div class="checkout-sections">
+                    <!-- 訂單明細 -->
+                    <div class="section">
+                        <h2 class="section-title">訂單明細</h2>
+                        <div id="orderItems">
+                            <!-- 訂單項目將在這裡顯示 -->
+                        </div>
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>商品小計:</span>
+                                <span id="subtotal">NT$ 0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>運費:</span>
+                                <span id="shipping">NT$ 100</span>
+                            </div>
+                            <div class="summary-row summary-total">
+                                <span>總計:</span>
+                                <span id="finalTotal">NT$ 0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 付款方式 -->
+                    <div class="section">
+                        <h2 class="section-title">付款方式</h2>
+                        <div class="payment-methods">
+                            <div class="payment-option" onclick="selectPayment('credit')">
+                                <input type="radio" name="payment" value="credit" id="credit">
+                                <div class="payment-icon">💳</div>
+                                <div class="payment-info">
+                                    <div class="payment-name">信用卡付款</div>
+                                    <div class="payment-desc">支援 Visa、MasterCard、JCB</div>
+                                </div>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('atm')">
+                                <input type="radio" name="payment" value="atm" id="atm">
+                                <div class="payment-icon">🏦</div>
+                                <div class="payment-info">
+                                    <div class="payment-name">ATM轉帳</div>
+                                    <div class="payment-desc">虛擬帳號，3天內完成轉帳</div>
+                                </div>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('convenience')">
+                                <input type="radio" name="payment" value="convenience" id="convenience">
+                                <div class="payment-icon">🏪</div>
+                                <div class="payment-info">
+                                    <div class="payment-name">超商付款</div>
+                                    <div class="payment-desc">7-11、全家、萊爾富、OK</div>
+                                </div>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('line')">
+                                <input type="radio" name="payment" value="line" id="line">
+                                <div class="payment-icon">💚</div>
+                                <div class="payment-info">
+                                    <div class="payment-name">LINE Pay</div>
+                                    <div class="payment-desc">使用LINE Pay快速付款</div>
+                                </div>
+                            </div>
+                            <div class="payment-option" onclick="selectPayment('apple')">
+                                <input type="radio" name="payment" value="apple" id="apple">
+                                <div class="payment-icon">🍎</div>
+                                <div class="payment-info">
+                                    <div class="payment-name">Apple Pay</div>
+                                    <div class="payment-desc">Touch ID或Face ID快速付款</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="place-order-btn" onclick="placeOrder()" disabled>
+                    請選擇付款方式
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 購物車模態框 -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 class="cart-title">購物車</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div id="cartItems">
+                <!-- 購物車商品將在這裡顯示 -->
+            </div>
+            <div class="cart-total">
+                <div class="total-amount">總計: NT$ <span id="totalAmount">0</span></div>
+                <button class="checkout-btn" onclick="goToCheckout()">前往結帳</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知訊息 -->
+    <div class="notification" id="notification"></div>
+
+    <script src="./js/index.js"></script>
+    <script src="./js/product.js"></script>
+</body>
+</html>
